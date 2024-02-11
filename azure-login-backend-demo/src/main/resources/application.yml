@@ -1,0 +1,17 @@
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+server:
+  port: 8010
+
+cors:
+  allowedOrigins: http://localhost:4200
+
+#spring:
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: https://login.microsoftonline.com/bc4c0a2d-ea53-43d1-a3ef-b7e3f317ad12/v2.0
+#          jwk-set-uri: https://login.windows.net/common/discovery/keys

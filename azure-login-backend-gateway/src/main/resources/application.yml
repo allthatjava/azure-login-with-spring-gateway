@@ -1,0 +1,28 @@
+service:
+  first:
+    uri: http://localhost:8010
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedMethods: [ "GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS" ]
+            allowedHeaders: [ "Authorization", "Content-Type", "Accept" ]
+            maxAge: 3600
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://login.microsoftonline.com/bc4c0a2d-ea53-43d1-a3ef-b7e3f317ad12/v2.0
+          jwk-set-uri: https://login.windows.net/common/discovery/keys
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
