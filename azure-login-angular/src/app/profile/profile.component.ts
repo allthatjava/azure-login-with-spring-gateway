@@ -21,6 +21,8 @@ type ProfileType = {
 export class ProfileComponent implements OnInit {
   profile!: ProfileType;
  accessToken:String = '';
+ heroes:String ="";
+ vigilante:String = "";
 
   constructor(
     private http: HttpClient,
@@ -79,12 +81,14 @@ export class ProfileComponent implements OnInit {
 
         this.http.get("http://localhost:8080/api/heroes",requestOptions_without_authrization)
         .subscribe(heroes => {
+          this.heroes = JSON.stringify(heroes);
           console.log("No login required page:"+heroes.toString());
         });
 
         this.http.get("http://localhost:8080/api/vigilante/1",requestOptions)
-        .subscribe(heroes => {
-          console.log("Login required page:"+heroes.toString());
+        .subscribe(vigilante => {
+          this.vigilante = JSON.stringify(vigilante);
+          console.log("Login required page:"+vigilante.toString());
         }); 
 
         // this.http.get("http://localhost:8080/token_details", requestOptions)
