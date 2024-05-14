@@ -12,16 +12,16 @@ public class GatewayConfig {
     private String firstServiceURI;
 
 
-    @Bean
-    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder){
-        System.out.println("!!!!!!!!!! gatewayRoutes Init");
-        return builder.routes()
-                .route(r -> r.path("/api/**")
-                                .and()
-//                                .method(HttpMethod.GET)
-                                .uri(firstServiceURI)
-//                        .id("employeeModule")
-                )
-                .build();
-    }
+//    @Bean
+//    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder){
+//        System.out.println("!!!!!!!!!! gatewayRoutes Init");
+//        return builder.routes()
+//                .route(r -> r.path("/api/**")
+//                                .and()
+////                                .method(HttpMethod.GET)
+//                                .uri(firstServiceURI)
+////                        .id("employeeModule")
+//                )
+//                .build();
+//    }
 }

@@ -9,6 +9,17 @@ logging:
 spring:
   cloud:
     gateway:
+      ## Instead of following configuration, we can use Class level configurations(GatewayConfig.java)
+      routes:
+        - id: get-heroes
+          uri: http://localhost:8010
+          predicates:
+            - Path=/api/heroes/**
+        - id: get-vigilante
+          uri: http://localhost:8010
+          predicates:
+            - Path=/api/vigilante/**
+      ##------------------
       globalcors:
         corsConfigurations:
           '[/**]':
