@@ -17,6 +17,8 @@ import { IPublicClientApplication, PublicClientApplication, InteractionType, Bro
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
 import { FailedComponent } from './failed/failed.component';
 
+import { environment } from './environments/environment';
+
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1; // Remove this line to use Angular Universal
 
 export function loggerCallback(logLevel: LogLevel, message: string) {
@@ -26,11 +28,10 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
-      // clientId: '6226576d-37e9-49eb-b201-ec1eeb0029b6', // Prod enviroment. Uncomment to use. 
-      clientId: '56e17b97-d97d-4842-a250-343f604a259c', // PPE testing environment
+      clientId: environment.clientId, // PPE testing environment
       // authority: 'https://login.microsoftonline.com/common', // Prod environment. Uncomment to use.
-      authority: 'https://login.microsoftonline.com/bc4c0a2d-ea53-43d1-a3ef-b7e3f317ad12', // PPE testing environment.
-      redirectUri: 'http://localhost:4200',
+      authority: environment.authority, // PPE testing environment.
+      redirectUri: environment.redirectUri,
       postLogoutRedirectUri: '/',
     },
     cache: {

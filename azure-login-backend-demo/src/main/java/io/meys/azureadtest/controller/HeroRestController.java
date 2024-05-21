@@ -34,19 +34,6 @@ public class HeroRestController {
 
         return HEROES;
     }
-
-//    @PreAuthorize("has('SCOPE_User.Read')")
-//    @PreAuthorize("#vars.claimSet.groups=='b4626ad4-ef2a-4148-9c33-0d3e5604aca0'")
-//    @PreAuthorize("#auth.tokenAttributes['name'] == 'Brian Heo'")
-//    @PreAuthorize("#authentication.tokenAttributes[@groupBean.getClaimField()].contains(@groupBean.getGroup1()) " +
-//            " || #authentication.tokenAttributes[@groupBean.getClaimField()].contains(@groupBean.getGroup2())")
-    @GetMapping(value = "/api/vigilante/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public HeroDto getHeroes(@PathVariable("id") int id, Authentication authentication
-    ) {
-        System.out.println("called /api/vigilante");
-
-        return HEROES.get(id);
-    }
 }
 
 class HeroDto {

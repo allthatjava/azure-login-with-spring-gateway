@@ -2,6 +2,8 @@
 service:
   first:
     uri: http://localhost:8010
+  second:
+    uri: http://localhost:8020
 
 logging:
   level:
@@ -17,9 +19,9 @@ spring:
           predicates:
             - Path=/api/heroes/**
         - id: get-vigilante
-          uri: http://localhost:8010
+          uri: http://localhost:8020
           predicates:
-            - Path=/api/vigilante/**
+            - Path=/bad-guys/vigilante/**
       ##------------------
       globalcors:
         corsConfigurations:
@@ -33,7 +35,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://login.microsoftonline.com/bc4c0a2d-ea53-43d1-a3ef-b7e3f317ad12/v2.0
+          issuer-uri: https://login.microsoftonline.com/<<Tenant ID>>/v2.0
           jwk-set-uri: https://login.windows.net/common/discovery/keys
   main:
     web-application-type: reactive

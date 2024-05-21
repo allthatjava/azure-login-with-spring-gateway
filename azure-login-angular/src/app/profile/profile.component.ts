@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MsalService } from '@azure/msal-angular';
-import { InteractionRequiredAuthError } from '@azure/msal-browser';
+import { environment } from '../environments/environment';
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me'; // Prod graph endpoint. Uncomment to use.
-//const GRAPH_ENDPOINT = 'https://graph.microsoft-ppe.com/v1.0/me';
 
 type ProfileType = {
   givenName?: string,
@@ -37,9 +36,7 @@ export class ProfileComponent implements OnInit {
 
     var request = {
       //scopes: ["User.Read"],
-      // scopes: ["56e17b97-d97d-4842-a250-343f604a259c/.default"]      
-      // scopes: ["https://graph.microsoft.com/.default"]
-      scopes: ["56e17b97-d97d-4842-a250-343f604a259c/.default"]
+      scopes: [environment.clientId+"/.default"]
     };
 
     this.authService.instance.acquireTokenSilent(request).then(tokenResponse => {
@@ -85,7 +82,8 @@ export class ProfileComponent implements OnInit {
           console.log("No login required page:"+heroes.toString());
         });
 
-        this.http.get("http://localhost:8080/api/vigilante/1",requestOptions)
+        // this.http.get("http://localhost:8080/api/vigilante/1",requestOptions)
+        this.http.get("http://localhost:8080/bad-guys/vigilante/1",requestOptions)
         .subscribe(vigilante => {
           this.vigilante = JSON.stringify(vigilante);
           console.log("Login required page:"+vigilante.toString());
@@ -110,9 +108,6 @@ export class ProfileComponent implements OnInit {
 
   var requestGraph = {
     scopes: ["User.Read"],
-    // scopes: ["56e17b97-d97d-4842-a250-343f604a259c/.default"]      
-    // scopes: ["https://graph.microsoft.com/.default"]
-    // scopes: ["56e17b97-d97d-4842-a250-343f604a259c/.default"]
   };
 
   this.authService.instance.acquireTokenSilent(requestGraph).then(tokenResponse => {

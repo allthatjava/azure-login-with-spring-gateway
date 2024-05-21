@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 public class GatewayConfig {
     @Value("${service.first.uri}")
     private String firstServiceURI;
+    @Value("${service.second.uri}")
+    private String secondServiceURI;
 
 
 //    @Bean
@@ -20,6 +22,12 @@ public class GatewayConfig {
 //                                .and()
 ////                                .method(HttpMethod.GET)
 //                                .uri(firstServiceURI)
+////                        .id("employeeModule")
+//                )
+//                .route(r -> r.path("/**")
+//                                .and()
+////                                .method(HttpMethod.GET)
+//                                .uri(secondServiceURI)
 ////                        .id("employeeModule")
 //                )
 //                .build();
